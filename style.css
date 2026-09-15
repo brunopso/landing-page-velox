@@ -1,4 +1,9 @@
 /* RESET BÁSICO */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,12 +18,24 @@ body {
 
 /* 1. CABEÇALHO (NAVBAR) */
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1e293b;
-    padding: 20px 80px;
+
+    padding: 16px 80px;
+
+    /* Efeito Glassmorphism */
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 .logo {
     color: #6366f1;
@@ -78,7 +95,22 @@ body {
     font-size: 44px;
     line-height: 1.2;
     margin-bottom: 16px;
+
+    /* Degradê no texto */
+    background: linear-gradient(
+        135deg,
+        #6366f1 0%,
+        #a855f7 50%,
+        #ec4899 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
+
 
 .subtitulo {
     color: #64748b;
