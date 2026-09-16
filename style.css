@@ -1,281 +1,279 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>VELOX - Tecnologia Future</title>
-
-    <!-- META TAGS OPEN GRAPH -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="VELOX - Tecnologia Future">
-    <meta property="og:description" content="Áudio imersivo, cancelamento de ruído e 100h de bateria.">
-    <meta property="og:image" content="IMAGEM/image.png">
-    <meta property="og:url" content="https://vercel.com/bruno-5c21/landing-page-velox">
-
-    <!-- FONT AWESOME -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-
-
-<body>
-
-    <!-- =========================================
-         CABEÇALHO
-    ========================================== -->
-    <header class="navbar">
-
-        <div class="logo">
-            VELOX - TECNOLOG FUTURE
-        </div>
-
-        <nav class="nav-links">
-
-            <a href="#especificacoes">
-                Especificações
-            </a>
-
-            <a href="#beneficios">
-                Benefícios
-            </a>
-
-            <button class="btn-comprar">
-                COMPRAR
-            </button>
-
-        </nav>
-
-    </header>
-
-
-    <!-- =========================================
-         CONTEÚDO PRINCIPAL
-    ========================================== -->
-    <main>
-
-
-        <!-- =====================================
-             HERO
-        ====================================== -->
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <span class="tag-lancamento">
-                    NOVO LANÇAMENTO
-                </span>
-
-                <h1>
-                    Seu som<br>
-                    Sua Liberdade!
-                </h1>
-
-                <p class="subtitulo">
-                    Áudio imersivo, cancelamento de ruído
-                    e 100h de bateria.
-                </p>
-
-                <div class="preco">
-                    R$299,00
-                </div>
-
-                <button class="btn-cta">
-                    Garantir o Meu 🎧
-                </button>
-
-            </div>
-
-
-            <div class="hero-image">
-
-                <img
-                    src="IMAGEM/image.png"
-                    alt="Fone de ouvido VELOX"
-                >
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================
-             ESPECIFICAÇÕES
-        ====================================== -->
-        <section
-            id="especificacoes"
-            class="especificacoes"
-        >
-
-            <h2>
-                Tecnologia que acompanha você
-            </h2>
-
-            <p>
-                O VELOX foi desenvolvido para oferecer
-                uma experiência sonora imersiva,
-                confortável e duradoura.
-            </p>
-
-        </section>
-
-
-        <!-- =====================================
-             BENEFÍCIOS
-        ====================================== -->
-        <section
-            id="beneficios"
-            class="beneficios"
-        >
-
-            <h2>
-                Por que escolher o nosso produto?
-            </h2>
-
-
-            <div class="cards-container">
-
-
-                <!-- CARD 1 -->
-                <div class="card">
-
-                    <div class="card-icon">
-                        🎧
-                    </div>
-
-                    <h3>
-                        Áudio Imersivo
-                    </h3>
-
-                    <p>
-                        Som potente e equilibrado
-                        para uma experiência sonora
-                        envolvente.
-                    </p>
-
-                </div>
-
-
-                <!-- CARD 2 -->
-                <div class="card">
-
-                    <div class="card-icon">
-                        🔊
-                    </div>
-
-                    <h3>
-                        Cancelamento de Ruído
-                    </h3>
-
-                    <p>
-                        Bloqueie os sons externos
-                        e aproveite sua música
-                        com mais concentração.
-                    </p>
-
-                </div>
-
-
-                <!-- CARD 3 -->
-                <div class="card">
-
-                    <div class="card-icon">
-                        🔋
-                    </div>
-
-                    <h3>
-                        Bateria Duradoura
-                    </h3>
-
-                    <p>
-                        Aproveite até 100 horas
-                        de bateria para acompanhar
-                        sua rotina.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================================
-         REDES SOCIAIS FLUTUANTES
-    ========================================== -->
-    <div class="social-floating">
-
-
-        <!-- WHATSAPP -->
-        <a
-            href="https://wa.me/5544991469073"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social whatsapp"
-            aria-label="WhatsApp"
-            title="WhatsApp"
-        >
-
-            <i class="fa-brands fa-whatsapp"></i>
-
-        </a>
-
-
-        <!-- INSTAGRAM -->
-        <a
-            href="https://instagram.com/bruno.pso"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social instagram"
-            aria-label="Instagram"
-            title="Instagram"
-        >
-
-            <i class="fa-brands fa-instagram"></i>
-
-        </a>
-
-
-        <!-- LINKEDIN -->
-        <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social linkedin"
-            aria-label="LinkedIn"
-            title="LinkedIn"
-        >
-
-            <i class="fa-brands fa-linkedin-in"></i>
-
-        </a>
-
-
-    </div>
-
-
-    <!-- =========================================
-         RODAPÉ
-    ========================================== -->
-    <footer class="footer">
-
-        <p>
-            &copy; 2026 Velox.
-            Todos os direitos reservados.
-        </p>
-
-    </footer>
-
-
-</body>
-
-</html>
+/* RESET BÁSICO */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+.social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #feda75, #d62976, #4f5bd5);
+}
+
+.social:hover {
+    transform: scale(1.1);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1e293b;
+}
+
+/* 1. CABEÇALHO (NAVBAR) */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 80px;
+
+    /* Efeito Glassmorphism */
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.logo {
+    color: #6366f1;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-comprar {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 2. SEÇÃO HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    max-width: 500px;
+}
+
+.tag-lancamento {
+    display: inline-block;
+    background-color: #e2e8f0;
+    color: #0f172a;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+
+    /* Degradê no texto */
+    background: linear-gradient(
+        135deg,
+        #6366f1 0%,
+        #a855f7 50%,
+        #ec4899 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+
+.subtitulo {
+    color: #64748b;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.preco {
+    color: #38bdf8;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn-cta {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hero-image img {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* 3. SEÇÃO DE BENEFÍCIOS */
+.beneficios {
+    text-align: center;
+    padding: 60px 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.beneficios h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card {
+    background-color: #1e293b;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 30px 20px;
+    width: 320px;
+    text-align: center;
+}
+
+.card-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+/* 4. RODAPÉ */
+.footer {
+    background-color: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 40px;
+}
+/* REDES SOCIAIS FLUTUANTES */
+.social-floating {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    z-index: 9999;
+}
+
+.social-floating .social {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+.social-floating .social:hover {
+    transform: scale(1.15);
+}
+
+.social-floating .whatsapp {
+    background-color: #25D366;
+}
+
+.social-floating .instagram {
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+}
+
+.social-floating .linkedin {
+    background-color: #0A66C2;
+}
