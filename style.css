@@ -3,6 +3,32 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
 }
+.social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #feda75, #d62976, #4f5bd5);
+}
+
+.social:hover {
+    transform: scale(1.1);
+}
+
 
 * {
     margin: 0;
