@@ -1,31 +1,38 @@
 /* ====================================================================
-1. VARIÁVEIS CSS (:root) — MODO ESCURO PADRÃO
-=====================================================================*/
+   1. VARIÁVEIS CSS (:root) — MODO ESCURO PADRÃO (DARK MODE)
+   ==================================================================== 
+   Aqui definimos todas as cores e medidas reutilizáveis do site.
+   Mudar uma cor aqui altera a cor no site inteiro de forma instantânea. */
 :root {
-    /* Paleta de Cores (Tema Escuro Padrão) */
-    --bg-main: #0f172a;               /* Azul escuro fundo */
-    --bg-card: #1e293b;               /* Azul dos cards */
-    --bg-glass: rgba(15, 23, 42, 0.8); /* Fundo translúcido */
-    --color-primary: #6366f1;          /* Índigo principal */
-    --color-primary-hover: #4f46e5;
-    --color-secondary: #ec4899;
-    --color-accent: #38bdf8;           /* Destaque de preço */
-    --color-text: #f8fafc;              /* Texto principal */
-    --color-text-muted: #94a3b8;        /* Texto secundário */
-    --color-border: #334155;            /* Bordas */
+    /* Paleta de Cores Padrão (Tema Escuro) */
+    --bg-main: #0f172a;               /* Fundo escuro azulado da página */
+    --bg-card: #1e293b;               /* Fundo um pouco mais claro para os cards */
+    --bg-glass: rgba(15, 23, 42, 0.8); /* Fundo semi-transparente para o cabeçalho */
+    --color-primary: #6366f1;          /* Cor roxo/índigo principal de destaque */
+    --color-primary-hover: #4f46e5;    /* Cor do botão quando passa o mouse por cima */
+    --color-secondary: #ec4899;        /* Cor secundária (Rosa) */
+    --color-accent: #38bdf8;           /* Azul claro para o preço */
+    --color-text: #f8fafc;              /* Cor do texto principal (Branco suave) */
+    --color-text-muted: #94a3b8;        /* Cor do texto secundário (Cinza) */
+    --color-border: #334155;            /* Cor das bordas finas */
     --hero-gradient: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #ec4899 100%);
 
-    /* Tipografia e Raios */
+    /* Tipografia e Bordas */
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-full: 999px;
 
-    /* Transição suave */
+    /* Velocidade padrão das animações e transições */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 🎨 ADAPTABILIDADE 1: MODO CLARO AUTOMÁTICO (prefers-color-scheme: light) */
+/* ====================================================================
+   [ADAPTABILIDADE 1]: MODO CLARO AUTOMÁTICO (prefers-color-scheme: light)
+   ====================================================================
+   O navegador lê a preferência do sistema operacional do usuário.
+   Se o usuário usar o celular/PC no "Modo Claro", o CSS sobrescreve 
+   as variáveis e altera o site inteiro automaticamente para cores claras! */
 @media (prefers-color-scheme: light) {
     :root {
         --bg-main: #f8fafc;               /* Fundo claro */
@@ -34,36 +41,38 @@
         --color-primary: #4f46e5;
         --color-primary-hover: #4338ca;
         --color-secondary: #db2777;
-        --color-accent: #0284c7;           /* Destaque preço no modo claro */
+        --color-accent: #0284c7;           /* Destaque do preço no tema claro */
         --color-text: #0f172a;              /* Texto escuro */
         --color-text-muted: #475569;        /* Texto secundário escuro */
-        --color-border: #e2e8f0;            /* Bordas claras */
+        --color-border: #e2e8f0;            /* Bordas cinza claro */
         --hero-gradient: linear-gradient(135deg, #0f172a 0%, #4338ca 50%, #db2777 100%);
     }
 }
 
-/* RESET E NAVEGAÇÃO SUAVE */
+/* ====================================================================
+   2. RESET E NORMAS GERAIS
+   ==================================================================== */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Garante que padding e bordas não aumentem a largura dos elementos */
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-behavior: smooth; /* Rolagem suave ao clicar nos links do menu */
+    scroll-padding-top: 90px; /* Garante que o menu fixo não cubra o título da seção ao rolar */
     font-family: var(--font-main);
     background-color: var(--bg-main);
     color: var(--color-text);
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Suaviza a troca entre modo claro e escuro */
 }
 
 body {
     line-height: 1.6;
-    overflow-x: hidden; /* Evita rolagem horizontal em 360px */
+    overflow-x: hidden; /* ESSENCIAL: Impede o aparecimento da barra de rolagem horizontal em telas pequenas (360px) */
 }
 
-/* ACESSIBILIDADE */
+/* Classe de acessibilidade para esconder elementos da tela mas mantê-los para leitores de tela */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -76,8 +85,8 @@ body {
 }
 
 /* ====================================================================
-2. CABEÇALHO FIXO COM GLASSMORPHISM
-=================================================================== */
+   3. CABEÇALHO FIXO COM GLASSMORPHISM
+   ==================================================================== */
 .header {
     position: sticky;
     top: 0;
@@ -87,6 +96,7 @@ body {
     align-items: center;
     padding: 16px 8%;
     background: var(--bg-glass);
+    /* Efeito Glassmorphism: Desfoca o conteúdo que passa por trás do cabeçalho ao rolar a página */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -121,8 +131,8 @@ body {
 }
 
 /* ====================================================================
-3. BOTÕES (.btn)
-=================================================================== */
+   4. ESTILIZAÇÃO DOS BOTÕES (.btn)
+   ==================================================================== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -152,8 +162,8 @@ body {
 
 .btn--primary:hover {
     background-color: var(--color-primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+    transform: translateY(-2px); /* Eleva o botão levemente para cima */
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35); /* Sombra colorida no hover */
 }
 
 .btn--outline {
@@ -168,10 +178,10 @@ body {
 }
 
 /* ====================================================================
-4. SEÇÃO HERO
-=================================================================== */
+   5. SEÇÃO HERO (Apresentação Principal)
+   ==================================================================== */
 .hero {
-    display: flex;
+    display: flex; /* Flexbox para colocar o texto e a imagem lado a lado no Desktop */
     align-items: center;
     justify-content: space-between;
     gap: 48px;
@@ -202,6 +212,7 @@ body {
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 18px;
+    /* Aplica um gradiente colorido no texto */
     background: var(--hero-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -244,8 +255,8 @@ body {
 }
 
 /* ====================================================================
-5. SEÇÃO DE BENEFÍCIOS (RESPONSIVIDADE 1: LAYOUT HÍBRIDO CSS GRID)
-==================================================================== */
+   [RESPONSIVIDADE 1]: SEÇÃO DE BENEFÍCIOS COM CSS GRID DINÂMICO
+   ==================================================================== */
 .beneficios {
     padding: 80px 8%;
     background-color: var(--bg-main);
@@ -270,13 +281,17 @@ body {
     font-size: 1.1rem;
 }
 
-/* 🧱 CSS GRID RESPONSIVO DINÂMICO */
+/* 🧱 REQUISITO EXIGIDO: CSS Grid Responsivo sem precisar de Media Query! */
 .beneficios__grid {
     display: grid;
+    /* repeat(auto-fit, minmax(280px, 1fr)):
+       - auto-fit: Quebra os elementos automaticamente para a linha de baixo conforme o espaço diminui.
+       - minmax(280px, 1fr): Cada card tem no mínimo 280px de largura e expande até ocupar 1 fração do espaço disponível. */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
+    gap: 32px; /* Espaço uniforme entre os cards */
 }
 
+/* Flexbox Interno dentro do Card para organizar o ícone, título e texto verticalmente */
 .card {
     background-color: var(--bg-card);
     border: 1px solid var(--color-border);
@@ -288,6 +303,7 @@ body {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Animação interativa ao passar o mouse por cima do Card */
 .card:hover {
     transform: translateY(-8px);
     border-color: var(--color-primary);
@@ -318,8 +334,8 @@ body {
 }
 
 /* ====================================================================
-6. FAQ SANFONADA (ADAPTABILIDADE 2: DETAILS E SUMMARY)
-==================================================================== */
+   [ADAPTABILIDADE 2]: FAQ SANFONADA (<details> e <summary>)
+   ==================================================================== */
 .faq {
     padding: 80px 8%;
     background-color: var(--bg-main);
@@ -349,6 +365,7 @@ body {
     gap: 16px;
 }
 
+/* Estilo de cada item da sanfona */
 .faq__item {
     background-color: var(--bg-card);
     border: 1px solid var(--color-border);
@@ -357,26 +374,30 @@ body {
     transition: var(--transition);
 }
 
+/* Estilo do item quando ele é aberto ([open]) */
 .faq__item[open] {
     border-color: var(--color-primary);
     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
 }
 
+/* O elemento <summary> funciona como o título/botão clicável */
 .faq__question {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--color-text);
     cursor: pointer;
-    list-style: none;
+    list-style: none; /* Esconde a seta padrão do navegador */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Remove a setinha padrão em navegadores WebKit (Chrome/Safari) */
 .faq__question::-webkit-details-marker {
     display: none;
 }
 
+/* Adiciona o ícone do sinal de + na direita */
 .faq__question::after {
     content: '+';
     font-size: 1.5rem;
@@ -384,10 +405,12 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* Quando o item está aberto, muda o ícone de + para o sinal de − */
 .faq__item[open] .faq__question::after {
     content: '−';
 }
 
+/* A resposta da pergunta que aparece só quando o elemento se abre */
 .faq__answer {
     margin-top: 14px;
     color: var(--color-text-muted);
@@ -398,8 +421,8 @@ body {
 }
 
 /* ====================================================================
-7. CAPTURA DE LEADS (.newsletter)
-==================================================================== */
+   7. FORMULÁRIO DE CAPTURA (.newsletter)
+   ==================================================================== */
 .newsletter {
     padding: 80px 8%;
 }
@@ -448,8 +471,8 @@ body {
 }
 
 /* ====================================================================
-8. REDES SOCIAIS FLUTUANTES
-==================================================================== */
+   8. REDES SOCIAIS FLUTUANTES
+   ==================================================================== */
 .social-floating {
     position: fixed;
     right: 20px;
@@ -479,6 +502,7 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* Efeito ao passar o mouse: aumenta o ícone e gira levemente */
 .social-floating .social:hover {
     transform: scale(1.12) translateX(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -493,8 +517,8 @@ body {
 .social-floating .linkedin { background-color: #0A66C2; }
 
 /* ====================================================================
-9. RODAPÉ (.footer)
-==================================================================== */
+   9. RODAPÉ (.footer)
+   ==================================================================== */
 .footer {
     padding: 32px 8%;
     border-top: 1px solid var(--color-border);
@@ -504,17 +528,19 @@ body {
 }
 
 /* ====================================================================
-10. RESPONSIVIDADE 2: MEDIA QUERY BREAKPOINT (max-width: 768px)
-==================================================================== */
+   [RESPONSIVIDADE 2]: MEDIA QUERIES BREAKPOINT (max-width: 768px)
+   ====================================================================
+   Esta regra é ativada quando a largura da tela for de 768px ou menor (Celulares e Tablets) */
 @media (max-width: 768px) {
+    /* Oculta os links do menu do cabeçalho em celulares */
     .header__nav {
         display: none;
     }
 
-    /* Reorganização da Seção Hero: empilhado na vertical e texto centralizado */
+    /* Reorganiza a Seção Hero: Troca de linha para coluna (empilha texto e imagem na vertical) */
     .hero {
         flex-direction: column;
-        text-align: center;
+        text-align: center; /* Centraliza todo o texto no mobile */
         padding-top: 40px;
         padding-bottom: 40px;
         gap: 32px;
@@ -529,6 +555,7 @@ body {
         flex-wrap: wrap;
     }
 
+    /* Empilha os campos do formulário no mobile */
     .newsletter__form {
         flex-direction: column;
         align-items: center;
@@ -544,7 +571,7 @@ body {
     }
 }
 
-/* Garantia de compatibilidade para telas ultra pequenas (360px) */
+/* Ajuste extra para garantir 100% de funcionamento em telas pequenas (360px) sem quebrar o layout */
 @media (max-width: 380px) {
     .hero__cta-group {
         flex-direction: column;

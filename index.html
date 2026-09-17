@@ -1,30 +1,36 @@
 <!DOCTYPE html>
+<!-- Define que o documento é HTML5 -->
 <html lang="pt-BR">
 <head>
+    <!-- Define a codificação de caracteres para aceitar acentos e ç -->
     <meta charset="UTF-8">
+
+    <!-- ESSENCIAL PARA RESPONSIVIDADE: Faz a página se ajustar à largura real da tela do dispositivo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>VELOX — Tecnologia do Futuro</title>
 
-    <!-- 🌐 META TAGS OPEN GRAPH (Redes Sociais e WhatsApp) -->
+    <!-- 🌐 META TAGS OPEN GRAPH (Define as informações que aparecem ao compartilhar o link no WhatsApp e redes sociais) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="VELOX — Seu Som, Sua Liberdade">
     <meta property="og:description" content="Áudio imersivo, cancelamento de ruído ativo e até 100 horas de bateria. Garanta o seu fone Velox!">
     <meta property="og:image" content="IMAGEM/image.png">
     <meta property="og:url" content="https://landing-page-velox.vercel.app">
 
-    <!-- Configuração de Favicon -->
+    <!-- Configuração do Ícone da Aba do Navegador (Favicon em formato emoji SVG) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
 
-    <!-- FontAwesome para os ícones sociais -->
+    <!-- Biblioteca FontAwesome: Utilizada para carregar os ícones das redes sociais (WhatsApp, Instagram, LinkedIn) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Estilos CSS -->
+    <!-- Link para a nossa folha de estilos CSS externa -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 📱 REDES SOCIAIS FLUTUANTES -->
+    <!-- 📱 REDES SOCIAIS FLUTUANTES (Fixadas na lateral direita da tela) -->
     <div class="social-floating">
+        <!-- target="_blank" abre o link em uma nova aba / rel="noopener noreferrer" garante segurança -->
         <a href="https://wa.me/5544991469073" target="_blank" rel="noopener noreferrer" class="social whatsapp" aria-label="WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
@@ -36,21 +42,28 @@
         </a>
     </div>
 
-    <!-- 💎 CABEÇALHO COM GLASSMORPHISM -->
+    <!-- 💎 CABEÇALHO DO SITE (Header Fixo no topo com efeito translúcido Glassmorphism) -->
     <header class="header">
         <a href="#" class="header__logo">
             <span>VELOX</span> TECNOLOGIA
         </a>
+
+        <!-- Menu de Navegação com Âncoras que rolam a página até a seção correspondente -->
         <nav class="header__nav">
             <a href="#beneficios" class="header__link">Benefícios</a>
             <a href="#faq" class="header__link">Dúvidas</a>
             <a href="#newsletter" class="header__link">Oferta</a>
         </nav>
+
+        <!-- Botão de Ação Rápida no Cabeçalho -->
         <a href="#newsletter" class="btn btn--primary btn--sm">COMPRAR</a>
     </header>
 
+    <!-- O elemento <main> indica o conteúdo principal e exclusivo desta página -->
     <main>
-        <!-- 🚀 SEÇÃO HERO (RESPONSIVIDADE: EMPILHA NO MOBILE COM MEDIA QUERY) -->
+        
+        <!-- 🚀 SEÇÃO HERO (Apresentação Principal do Produto) -->
+        <!-- [RESPONSIVIDADE 2]: No desktop fica texto e imagem lado a lado. No Mobile (< 768px) empilha verticalmente -->
         <section class="hero">
             <div class="hero__content">
                 <span class="tag">✦ NOVO LANÇAMENTO 2026</span>
@@ -59,26 +72,29 @@
                     Áudio imersivo, cancelamento ativo de ruído e incrível autonomia de 100 horas de bateria para acompanhar seu ritmo.
                 </p>
                 <div class="preco">R$ 299,00</div>
+                
                 <div class="hero__cta-group">
                     <a href="#newsletter" class="btn btn--primary btn--lg">Garantir o Meu 🎧</a>
                     <a href="#beneficios" class="btn btn--outline btn--lg">Saber Mais</a>
                 </div>
             </div>
+
             <div class="hero__image-wrapper">
                 <figure class="hero__figure">
-                    <img src="IMAGEM/image.png" alt="Fone de Ouvido Velox High Definition" class="hero__img">
+                    <img src="IMAGEM/image.png" alt="Fone de Ouvido Velox High Definition sem fio" class="hero__img">
                 </figure>
             </div>
         </section>
 
-        <!-- 🎁 SEÇÃO DE BENEFÍCIOS (RESPONSIVIDADE: CSS GRID HÍBRIDO) -->
+        <!-- 🎁 SEÇÃO DE BENEFÍCIOS -->
+        <!-- [RESPONSIVIDADE 1]: Utiliza CSS Grid Híbrido com auto-fit para reorganizar os cards automaticamente conforme o tamanho da tela -->
         <section id="beneficios" class="beneficios">
             <div class="beneficios__header">
                 <h2 class="beneficios__title">Por que escolher o Velox?</h2>
                 <p class="beneficios__subtitle">Tudo o que você precisa em um único lugar para crescer sua experiência sonora.</p>
             </div>
 
-            <!-- Container Grid Responsivo Auto-fit -->
+            <!-- Container Grid onde os cards ficam organizados -->
             <div class="beneficios__grid">
                 <!-- Card 1 -->
                 <article class="card">
@@ -89,7 +105,7 @@
                     </p>
                 </article>
 
-                <!-- Card 2 -->
+                <!-- Card 2 (Destaque visual) -->
                 <article class="card card--featured">
                     <div class="card__icon">🛡️</div>
                     <h3 class="card__title">Segurança e Conforto</h3>
@@ -109,28 +125,35 @@
             </div>
         </section>
 
-        <!-- ❓ SEÇÃO FAQ (ADAPTABILIDADE: ECONOMIA DE ESPAÇO COM DETAILS E SUMMARY) -->
+        <!-- ❓ SEÇÃO FAQ (PERGUNTAS FREQUENTES) -->
+        <!-- [ADAPTABILIDADE 2]: Utiliza as tags semânticas <details> e <summary> do HTML5 para criar a sanfona nativa.
+             Economiza espaço em telas pequenas e oferece acessibilidade por teclado sem precisar de JavaScript -->
         <section id="faq" class="faq">
             <div class="faq__header">
                 <h2 class="section-title">Perguntas Frequentes</h2>
                 <p class="section-subtitle">Tire suas dúvidas sobre o Fone Velox de forma rápida.</p>
             </div>
+
             <div class="faq__container">
+                <!-- Item 1 da Sanfona -->
                 <details class="faq__item">
                     <summary class="faq__question">Qual a duração total da bateria?</summary>
                     <p class="faq__answer">A bateria do Velox dura até 100 horas com o cancelamento de ruído desligado e até 70 horas com a função ANC ativada. Além disso, 10 minutos de carga garantem 5 horas de som.</p>
                 </details>
 
+                <!-- Item 2 da Sanfona -->
                 <details class="faq__item">
                     <summary class="faq__question">O fone é compatível com meu smartphone e notebook?</summary>
                     <p class="faq__answer">Sim! Ele conta com tecnologia Bluetooth 5.3 universal, sendo compatível com Android, iOS, Windows, macOS e Linux.</p>
                 </details>
 
+                <!-- Item 3 da Sanfona -->
                 <details class="faq__item">
                     <summary class="faq__question">O cancelamento de ruído bloqueia ruídos fortes?</summary>
                     <p class="faq__answer">Sim, o Velox conta com cancelamento ativo de ruído (ANC) capaz de reduzir até 95% dos barulhos de motores, escritório e trânsito.</p>
                 </details>
 
+                <!-- Item 4 da Sanfona -->
                 <details class="faq__item">
                     <summary class="faq__question">Qual o prazo de garantia do produto?</summary>
                     <p class="faq__answer">Oferecemos 12 meses de garantia oficial de fábrica contra defeitos de fabricação, com suporte nacional dedicado.</p>
@@ -138,13 +161,15 @@
             </div>
         </section>
 
-        <!-- 📩 SEÇÃO DE CAPTURA DE LEADS -->
+        <!-- 📩 SEÇÃO DE CAPTURA DE LEADS (NEWSLETTER) -->
         <section id="newsletter" class="newsletter">
             <div class="newsletter__container">
                 <h2 class="section-title">Garanta Seu Velox com Desconto</h2>
                 <p class="section-subtitle">Cadastre seu e-mail e receba R$ 30,00 OFF na sua primeira compra.</p>
+                
                 <form class="newsletter__form" action="#" method="POST">
                     <div class="newsletter__field">
+                        <!-- sr-only oculta o label visualmente mas mantém para leitores de tela de pessoas com deficiência visual -->
                         <label for="email-input" class="sr-only">Seu e-mail principal</label>
                         <input type="email" id="email-input" class="newsletter__input" placeholder="Digite seu melhor e-mail..." required>
                     </div>
@@ -152,6 +177,7 @@
                 </form>
             </div>
         </section>
+
     </main>
 
     <!-- 🦶 RODAPÉ DA PÁGINA -->
