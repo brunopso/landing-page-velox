@@ -1,230 +1,397 @@
 /* RESET BÁSICO */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-.social {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    margin: 5px;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    transition: 0.3s;
+/* ====================================================================
+1. VARIÁVEIS CSS (:root) & RESET BÁSICO
+=====================================================================*/
+:root {
+    /* Paleta de Cores */
+    --bg-main: #0f172a;        /* Azul bem escuro (Fundo do site) */
+    --bg-card: #1e293b;        /* Azul escuro (Cards e containers) */
+    --bg-glass: rgba(15, 23, 42, 0.8); /* Fundo translúcido */
+    --color-primary: #6366f1;   /* Índigo / Roxo */
+    --color-primary-hover: #4f46e5;
+    --color-secondary: #ec4899; /* Rosa destaque */
+    --color-accent: #38bdf8;    /* Azul claro (Preço e detalhes) */
+    --color-text: #f8fafc;       /* Texto principal (Branco) */
+    --color-text-muted: #94a3b8; /* Texto secundário (Cinza) */
+    --color-border: #334155;     /* Bordas sutis */
+
+    /* Fontes e Tamanhos */
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-full: 999px;
+
+    /* Transições de Animação */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.whatsapp {
-    background-color: #25D366;
-}
-
-.instagram {
-    background: linear-gradient(45deg, #feda75, #d62976, #4f5bd5);
-}
-
-.social:hover {
-    transform: scale(1.1);
-}
-.social-floating .social:hover {
-    transform: scale(1.15);
-}
-
-
+/* Reset Universal & Smooth Scroll */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* NAVEGAÇÃO SUAVE */
+    scroll-padding-top: 90px; /* Evita que o header tape o topo das seções */
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--color-text);
 }
 
 body {
-    background-color: #ffffff;
-    color: #1e293b;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* 1. CABEÇALHO (NAVBAR) */
-.navbar {
-    position: sticky;
+/* Utilitário para Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ====================================================================
+2. CABEÇALHO FIXO COM GLASSMORPHISM (.header)
+=================================================================== */
+.header {
+    position: sticky; /* Mantém fixo no topo ao rolar */
     top: 0;
     z-index: 1000;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 16px 80px;
+    padding: 16px 8%;
 
     /* Efeito Glassmorphism */
-    background: rgba(30, 41, 59, 0.75);
+    background: var(--bg-glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
-.logo {
-    color: #6366f1;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-links a {
-    color: #94a3b8;
+.header__logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-text);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
+    letter-spacing: 0.5px;
 }
 
-.btn-comprar {
-    background-color: #6366f1;
-    color: white;
+.header__logo span {
+    color: var(--color-primary);
+}
+
+.header__nav {
+    display: flex;
+    gap: 28px;
+}
+
+.header__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.header__link:hover {
+    color: var(--color-primary);
+}
+
+/* ====================================================================
+3. BOTÕES REUTILIZÁVEIS (.btn)
+=================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
+    transition: var(--transition);
 }
 
-/* 2. SEÇÃO HERO */
+.btn--sm {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+}
+
+.btn--lg {
+    padding: 14px 28px;
+    font-size: 1rem;
+}
+
+.btn--primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.btn--primary:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+
+.btn--outline {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn--outline:hover {
+    border-color: var(--color-primary);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* ====================================================================
+4. SEÇÃO HERO COM TEXTO EM DEGRADÊ
+=================================================================== */
 .hero {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 60px 80px;
+    justify-content: space-between;
+    gap: 48px;
+    padding: 80px 8%;
+    min-height: calc(100vh - 80px);
     max-width: 1440px;
     margin: 0 auto;
 }
 
-.hero-content {
-    max-width: 500px;
+.hero__content {
+    flex: 1;
+    max-width: 580px;
 }
 
-.tag-lancamento {
+.tag {
     display: inline-block;
-    background-color: #e2e8f0;
-    color: #0f172a;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background-color: rgba(99, 102, 241, 0.15);
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
     margin-bottom: 20px;
 }
 
-.hero-content h1 {
-    font-size: 44px;
-    line-height: 1.2;
-    margin-bottom: 16px;
-
-    /* Degradê no texto */
-    background: linear-gradient(
-        135deg,
-        #6366f1 0%,
-        #a855f7 50%,
-        #ec4899 100%
-    );
-
+/* TÍTULO PRINCIPAL EM DEGRADÊ */
+.hero__title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #ec4899 100%);
     -webkit-background-clip: text;
     background-clip: text;
-
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
-
-.subtitulo {
-    color: #64748b;
-    font-size: 16px;
-    margin-bottom: 24px;
-}
-
-.preco {
-    color: #38bdf8;
-    font-size: 32px;
-    font-weight: bold;
+.hero__description {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
     margin-bottom: 20px;
 }
 
-.btn-cta {
-    background-color: #6366f1;
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.preco {
+    color: var(--color-accent);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 24px;
 }
 
-.hero-image img {
-    width: 450px;
-    height: 450px;
+.hero__cta-group {
+    display: flex;
+    gap: 16px;
+}
+
+.hero__image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero__img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     object-fit: cover;
-    border-radius: 12px;
 }
 
-/* 3. SEÇÃO DE BENEFÍCIOS */
-.beneficios {
+/* ====================================================================
+5. SEÇÃO DE ESPECIFICAÇÕES
+==================================================================== */
+.especificacoes {
+    padding: 80px 8%;
+    background-color: rgba(255, 255, 255, 0.015);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.especificacoes__header {
     text-align: center;
-    padding: 60px 80px;
+    margin-bottom: 48px;
+}
+
+.especificacoes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.spec-item {
+    background-color: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.spec-label {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spec-item strong {
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+/* ====================================================================
+6. SEÇÃO DE BENEFÍCIOS (CSS GRID RESPONSIVO)
+==================================================================== */
+.beneficios {
+    padding: 90px 8%;
     max-width: 1440px;
     margin: 0 auto;
 }
 
-.beneficios h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
-}
-
-.cards-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.card {
-    background-color: #1e293b;
-    color: white;
-    border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 30px 20px;
-    width: 320px;
+.beneficios__header {
     text-align: center;
+    margin-bottom: 56px;
 }
 
-.card-icon {
-    font-size: 36px;
-    margin-bottom: 16px;
-}
-
-.card h3 {
-    font-size: 20px;
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 800;
     margin-bottom: 12px;
 }
 
-.card p {
-    color: #94a3b8;
-    font-size: 14px;
+.section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
 }
 
-/* 4. RODAPÉ */
-.footer {
-    background-color: #1e293b;
-    color: #94a3b8;
-    text-align: center;
-    padding: 25px 0;
-    margin-top: 40px;
+.beneficios__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
 }
-/* REDES SOCIAIS FLUTUANTES */
+
+.card {
+    background-color: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+}
+
+.card--featured {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(99, 102, 241, 0.08) 100%);
+}
+
+.card__icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.card__title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.card__description {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+/* ====================================================================
+7. CAPTURA DE LEADS (.newsletter)
+==================================================================== */
+.newsletter {
+    padding: 90px 8%;
+}
+
+.newsletter__container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.newsletter__form {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    justify-content: center;
+}
+
+.newsletter__field {
+    flex: 1;
+    max-width: 400px;
+}
+
+.newsletter__input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--bg-main);
+    color: var(--color-text);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.newsletter__input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.btn--form {
+    padding: 14px 24px;
+}
+
+/* ====================================================================
+8. REDES SOCIAIS FLUTUANTES COM TRANSIÇÃO E EFEITO HOVER
+==================================================================== */
 .social-floating {
     position: fixed;
     right: 20px;
@@ -246,48 +413,88 @@ body {
     color: #ffffff;
     text-decoration: none;
     font-size: 22px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 
-    /* Transição com curva suave (spring effect) para o botão */
+    /* Transição elástica (spring) para o botão */
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                 box-shadow 0.3s ease,
                 filter 0.3s ease;
 }
 
-/* Transição para o ícone (FontAwesome) dentro do botão */
+/* Transição do ícone interno (FontAwesome) */
 .social-floating .social i {
     transition: transform 0.3s ease;
 }
 
-/* ESTADOS DE HOVER */
+/* Efeito de passar o mouse (Hover) */
 .social-floating .social:hover {
-    /* Aumenta levemente e projeta o botão para a esquerda */
     transform: scale(1.12) translateX(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    filter: brightness(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.15);
 }
 
-/* Rotação do ícone ao passar o mouse */
+/* Rotação e ampliação sutil do ícone ao passar o mouse */
 .social-floating .social:hover i {
     transform: rotate(12deg) scale(1.1);
 }
 
-/* CORES DOS BOTÕES */
+/* Cores das Redes Sociais */
 .social-floating .whatsapp {
     background-color: #25D366;
 }
 
 .social-floating .instagram {
-    background: linear-gradient(
-        45deg,
-        #feda75,
-        #fa7e1e,
-        #d62976,
-        #962fbf,
-        #4f5bd5
-    );
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
 }
 
 .social-floating .linkedin {
     background-color: #0A66C2;
+}
+
+/* ====================================================================
+9. RODAPÉ (.footer)
+==================================================================== */
+.footer {
+    padding: 32px 8%;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* ====================================================================
+10. RESPONSIVIDADE (MEDIA QUERIES)
+==================================================================== */
+@media (max-width: 868px) {
+    .header__nav {
+        display: none; /* Oculta navegação simples em dispositivos móveis */
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .hero__title {
+        font-size: 2.25rem;
+    }
+
+    .hero__cta-group {
+        justify-content: center;
+    }
+
+    .newsletter__form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter__field,
+    .btn--form {
+        width: 100%;
+    }
+
+    .social-floating {
+        right: 10px;
+    }
 }
