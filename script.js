@@ -33,14 +33,28 @@ if (formNewsletter) {
 // MÓDULO 3 — AULA 2: MENU MOBILE E ALTERNADOR DE TEMA VIA classList.toggle
 // ==========================================================================
 
-// 1. LÓGICA DO MENU MOBILE
+// ==========================================================================
+// 1. LÓGICA DO MENU MOBILE COM DESAFIO EXTRA
+// ==========================================================================
+
 const menuToggle = document.querySelector('#menu-toggle');
 const headerNav = document.querySelector('#header-nav');
 
+// Seleciona TODOS os links que estão dentro do menu de navegação
+const navLinks = document.querySelectorAll('.header__link');
+
 if (menuToggle && headerNav) {
+    // Evento de clique no botão hambúrguer para abrir/fechar o menu
     menuToggle.addEventListener('click', function() {
-        // Alterna a classe que exibe/oculta o menu no CSS
         headerNav.classList.toggle('header__nav--active');
+    });
+
+    // ✏️ DESAFIO EXTRA: Fecha o menu ao clicar em qualquer link da navegação
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            // Remove a classe ativa, fazendo o menu fechar automaticamente
+            headerNav.classList.remove('header__nav--active');
+        });
     });
 }
 
