@@ -2,55 +2,29 @@
    1. VARIÁVEIS CSS (:root) — MODO ESCURO PADRÃO (DARK MODE)
    ==================================================================== */
 :root {
-    /* Paleta de Cores Padrão (Tema Escuro) */
-    --bg-main: #0f172a;               /* Fundo escuro azulado da página */
-    --bg-card: #1e293b;               /* Fundo um pouco mais claro para os cards */
-    --bg-glass: rgba(15, 23, 42, 0.8); /* Fundo semi-transparente para o cabeçalho */
-    --color-primary: #6366f1;          /* Cor roxo/índigo principal de destaque */
-    --color-primary-hover: #4f46e5;    /* Cor do botão quando passa o mouse por cima */
-    --color-secondary: #ec4899;        /* Cor secundária (Rosa) */
-    --color-accent: #38bdf8;           /* Azul claro para o preço */
-    --color-text: #f8fafc;              /* Cor do texto principal (Branco suave) */
-    --color-text-muted: #94a3b8;        /* Cor do texto secundário (Cinza) */
-    --color-border: #334155;            /* Cor das bordas finas */
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-glass: rgba(15, 23, 42, 0.9);
+    --color-primary: #6366f1;
+    --color-primary-hover: #4f46e5;
+    --color-secondary: #ec4899;
+    --color-accent: #38bdf8;
+    --color-text: #f8fafc;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
     --hero-gradient: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #ec4899 100%);
-
-    /* Tipografia e Bordas */
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-full: 999px;
-
-    /* Velocidade padrão das animações e transições */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ====================================================================
-   [ADAPTABILIDADE 1]: MODO CLARO AUTOMÁTICO (prefers-color-scheme: light)
-   ==================================================================== */
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-main: #f8fafc;
-        --bg-card: #ffffff;
-        --bg-glass: rgba(248, 250, 252, 0.85);
-        --color-primary: #4f46e5;
-        --color-primary-hover: #4338ca;
-        --color-secondary: #db2777;
-        --color-accent: #0284c7;
-        --color-text: #0f172a;
-        --color-text-muted: #475569;
-        --color-border: #e2e8f0;
-        --hero-gradient: linear-gradient(135deg, #0f172a 0%, #4338ca 50%, #db2777 100%);
-    }
-}
-
-/* ====================================================================
-   🎨 CLASSE MANUAL PARA LIGHT MODE (Mudar Tema via Botão JavaScript)
-   ==================================================================== */
+/* 🎨 CLASSE MANUAL PARA LIGHT MODE (Mudar Tema via Botão JavaScript) */
 body.light-theme {
     --bg-main: #f8fafc;
     --bg-card: #ffffff;
-    --bg-glass: rgba(255, 255, 255, 0.85);
+    --bg-glass: rgba(255, 255, 255, 0.95);
     --color-primary: #4f46e5;
     --color-primary-hover: #4338ca;
     --color-secondary: #db2777;
@@ -98,7 +72,7 @@ body {
 }
 
 /* ====================================================================
-   3. CABEÇALHO FIXO COM GLASSMORPHISM
+   3. CABEÇALHO FIXO E BOTÕES
    ==================================================================== */
 .header {
     position: sticky;
@@ -125,12 +99,6 @@ body {
     color: var(--color-primary);
 }
 
-.header__actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
 .header__nav {
     display: flex;
     gap: 28px;
@@ -148,58 +116,32 @@ body {
     color: var(--color-primary);
 }
 
-/* ====================================================================
-   4. ESTILO DOS BOTÕES DE ÍCONE E HAMBÚRGUER (AULA 2)
-   ==================================================================== */
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Botões de Ícone (Tema e Hambúrguer) */
 .btn-icon {
     background: transparent;
     border: none;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    padding: 8px;
+    padding: 6px;
     color: var(--color-text);
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Desenho das 3 linhas do Menu Hambúrguer em CSS */
+/* Por padrão no Desktop, o botão hambúrguer FICA ESCONDIDO */
 .btn-menu {
-    width: 40px;
-    height: 40px;
-    position: relative;
-}
-
-.hamburger {
-    display: block;
-    width: 24px;
-    height: 3px;
-    background-color: var(--color-text);
-    position: relative;
-    transition: background-color 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    background-color: var(--color-text);
-    left: 0;
-    transition: transform 0.3s ease, top 0.3s ease;
-}
-
-.hamburger::before {
-    top: -8px;
-}
-
-.hamburger::after {
-    top: 8px;
+    display: none;
 }
 
 /* ====================================================================
-   5. ESTILIZAÇÃO DOS BOTÕES (.btn)
+   4. BOTÕES GERAIS (.btn)
    ==================================================================== */
 .btn {
     display: inline-flex;
@@ -246,7 +188,7 @@ body {
 }
 
 /* ====================================================================
-   6. SEÇÃO HERO
+   5. SEÇÃO HERO
    ==================================================================== */
 .hero {
     display: flex;
@@ -322,7 +264,7 @@ body {
 }
 
 /* ====================================================================
-   7. SEÇÃO DE BENEFÍCIOS
+   6. BENEFÍCIOS (GRID RESPONSIVO)
    ==================================================================== */
 .beneficios {
     padding: 80px 8%;
@@ -395,7 +337,7 @@ body {
 }
 
 /* ====================================================================
-   8. FAQ SANFONADA (<details> e <summary>)
+   7. FAQ
    ==================================================================== */
 .faq {
     padding: 80px 8%;
@@ -475,7 +417,7 @@ body {
 }
 
 /* ====================================================================
-   9. FORMULÁRIO NEWSLETTER
+   8. NEWSLETTER & FOOTER
    ==================================================================== */
 .newsletter {
     padding: 80px 8%;
@@ -524,9 +466,6 @@ body {
     padding: 14px 24px;
 }
 
-/* ====================================================================
-   10. REDES SOCIAIS FLUTUANTES
-   ==================================================================== */
 .social-floating {
     position: fixed;
     right: 20px;
@@ -552,26 +491,10 @@ body {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
 }
 
-.social-floating .social i {
-    transition: transform 0.3s ease;
-}
-
-.social-floating .social:hover {
-    transform: scale(1.12) translateX(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.social-floating .social:hover i {
-    transform: rotate(12deg) scale(1.1);
-}
-
 .social-floating .whatsapp { background-color: #25D366; }
 .social-floating .instagram { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
 .social-floating .linkedin { background-color: #0A66C2; }
 
-/* ====================================================================
-   11. RODAPÉ (.footer)
-   ==================================================================== */
 .footer {
     padding: 32px 8%;
     border-top: 1px solid var(--color-border);
@@ -581,10 +504,20 @@ body {
 }
 
 /* ====================================================================
-   12. MEDIA QUERIES E MENU MOBILE RESPONSIVO (AULA 2)
+   📱 9. REGRAS RESPONSIVAS PARA TELAS MENORES (ATÉ 868px)
    ==================================================================== */
 @media (max-width: 868px) {
-    /* Oculta o menu por padrão no mobile */
+    /* Exibe o botão hambúrguer no mobile */
+    .btn-menu {
+        display: flex;
+    }
+
+    /* Oculta o botão COMPRAR do header no mobile para economizar espaço */
+    .header__cta {
+        display: none;
+    }
+
+    /* Esconde o menu de navegação por padrão no mobile */
     .header__nav {
         display: none;
         position: absolute;
@@ -593,18 +526,18 @@ body {
         width: 100%;
         background: var(--bg-card);
         flex-direction: column;
-        padding: 24px;
+        padding: 20px;
         gap: 16px;
         border-bottom: 1px solid var(--color-border);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        text-align: center;
     }
 
-    /* Classe ativada via JavaScript ao clicar no hambúrguer */
+    /* Classe que o JavaScript ativa ao clicar no ícone ☰ */
     .header__nav.header__nav--active {
         display: flex;
     }
 
-    /* Reorganização da Hero no mobile */
     .hero {
         flex-direction: column;
         text-align: center;
@@ -634,16 +567,5 @@ body {
 
     .social-floating {
         right: 10px;
-    }
-}
-
-@media (max-width: 380px) {
-    .hero__cta-group {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn--lg {
-        width: 100%;
     }
 }

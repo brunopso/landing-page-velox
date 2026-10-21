@@ -51,34 +51,34 @@
         </a>
     </div>
 
-    <!-- 💎 CABEÇALHO DO SITE (Header Fixo no topo com efeito translúcido Glassmorphism) -->
+    <!-- 💎 CABEÇALHO DO SITE -->
     <header class="header">
         <a href="#" class="header__logo">
             <span>VELOX</span> TECNOLOGIA
         </a>
 
-        <!-- 🟡 BOTÃO DE TEMA E MENU MOBILE -->
-        <div class="header__actions">
-            <!-- Botão para Alternar Tema -->
-            <button id="theme-toggle" class="btn-icon" aria-label="Alternar Tema">
-                <span class="theme-icon">🌙</span>
-            </button>
-
-            <!-- Botão Hambúrguer para Telas Menores -->
-            <button id="menu-toggle" class="btn-icon btn-menu" aria-label="Abrir Menu">
-                <span class="hamburger"></span>
-            </button>
-        </div>
-
-        <!-- Menu de Navegação (receberá a classe 'header__nav--active' via JS) -->
+        <!-- Menu de Navegação (receberá a classe 'header__nav--active' via JS no mobile) -->
         <nav class="header__nav" id="header-nav">
             <a href="#beneficios" class="header__link">Benefícios</a>
             <a href="#faq" class="header__link">Dúvidas</a>
             <a href="#newsletter" class="header__link">Oferta</a>
         </nav>
 
-        <!-- Botão de Ação Rápida no Cabeçalho -->
-        <a href="#newsletter" class="btn btn--primary btn--sm">COMPRAR</a>
+        <!-- 🟡 BOTÕES DE AÇÃO (TEMA E MENU MOBILE) -->
+        <div class="header__actions">
+            <!-- Botão para Alternar Tema -->
+            <button id="theme-toggle" class="btn-icon" aria-label="Alternar Tema">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <!-- Botão Hambúrguer para Telas Menores (com o símbolo ☰) -->
+            <button id="menu-toggle" class="btn-icon btn-menu" aria-label="Abrir Menu">
+                <span class="hamburger">☰</span>
+            </button>
+        </div>
+
+        <!-- Botão COMPRAR (ficará oculto no mobile para não apertar o espaço) -->
+        <a href="#newsletter" class="btn btn--primary btn--sm header__cta">COMPRAR</a>
     </header>
 
     <!-- O elemento <main> indica o conteúdo principal e exclusivo desta página -->
