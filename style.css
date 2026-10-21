@@ -1,8 +1,6 @@
 /* ====================================================================
    1. VARIÁVEIS CSS (:root) — MODO ESCURO PADRÃO (DARK MODE)
-   ==================================================================== 
-   Aqui definimos todas as cores e medidas reutilizáveis do site.
-   Mudar uma cor aqui altera a cor no site inteiro de forma instantânea. */
+   ==================================================================== */
 :root {
     /* Paleta de Cores Padrão (Tema Escuro) */
     --bg-main: #0f172a;               /* Fundo escuro azulado da página */
@@ -29,51 +27,65 @@
 
 /* ====================================================================
    [ADAPTABILIDADE 1]: MODO CLARO AUTOMÁTICO (prefers-color-scheme: light)
-   ====================================================================
-   O navegador lê a preferência do sistema operacional do usuário.
-   Se o usuário usar o celular/PC no "Modo Claro", o CSS sobrescreve 
-   as variáveis e altera o site inteiro automaticamente para cores claras! */
+   ==================================================================== */
 @media (prefers-color-scheme: light) {
     :root {
-        --bg-main: #f8fafc;               /* Fundo claro */
-        --bg-card: #ffffff;               /* Cards brancos */
+        --bg-main: #f8fafc;
+        --bg-card: #ffffff;
         --bg-glass: rgba(248, 250, 252, 0.85);
         --color-primary: #4f46e5;
         --color-primary-hover: #4338ca;
         --color-secondary: #db2777;
-        --color-accent: #0284c7;           /* Destaque do preço no tema claro */
-        --color-text: #0f172a;              /* Texto escuro */
-        --color-text-muted: #475569;        /* Texto secundário escuro */
-        --color-border: #e2e8f0;            /* Bordas cinza claro */
+        --color-accent: #0284c7;
+        --color-text: #0f172a;
+        --color-text-muted: #475569;
+        --color-border: #e2e8f0;
         --hero-gradient: linear-gradient(135deg, #0f172a 0%, #4338ca 50%, #db2777 100%);
     }
 }
 
 /* ====================================================================
+   🎨 CLASSE MANUAL PARA LIGHT MODE (Mudar Tema via Botão JavaScript)
+   ==================================================================== */
+body.light-theme {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+    --color-primary: #4f46e5;
+    --color-primary-hover: #4338ca;
+    --color-secondary: #db2777;
+    --color-accent: #0284c7;
+    --color-text: #0f172a;
+    --color-text-muted: #475569;
+    --color-border: #e2e8f0;
+    --hero-gradient: linear-gradient(135deg, #0f172a 0%, #4338ca 50%, #db2777 100%);
+}
+
+/* ====================================================================
    2. RESET E NORMAS GERAIS
    ==================================================================== */
-* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} /* Garante que padding e bordas não aumentem a largura dos elementos */
-
+}
 
 html {
-    scroll-behavior: smooth; /* Rolagem suave ao clicar nos links do menu */
-    scroll-padding-top: 90px; /* Garante que o menu fixo não cubra o título da seção ao rolar */
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
     font-family: var(--font-main);
     background-color: var(--bg-main);
     color: var(--color-text);
-    transition: background-color 0.4s ease, color 0.4s ease; /* Suaviza a troca entre modo claro e escuro */
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body {
     line-height: 1.6;
-    overflow-x: hidden; /* ESSENCIAL: Impede o aparecimento da barra de rolagem horizontal em telas pequenas (360px) */
+    overflow-x: hidden;
+    background-color: var(--bg-main);
+    color: var(--color-text);
 }
 
-/* Classe de acessibilidade para esconder elementos da tela mas mantê-los para leitores de tela */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -97,7 +109,6 @@ body {
     align-items: center;
     padding: 16px 8%;
     background: var(--bg-glass);
-    /* Efeito Glassmorphism: Desfoca o conteúdo que passa por trás do cabeçalho ao rolar a página */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -112,6 +123,12 @@ body {
 
 .header__logo span {
     color: var(--color-primary);
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .header__nav {
@@ -132,7 +149,57 @@ body {
 }
 
 /* ====================================================================
-   4. ESTILIZAÇÃO DOS BOTÕES (.btn)
+   4. ESTILO DOS BOTÕES DE ÍCONE E HAMBÚRGUER (AULA 2)
+   ==================================================================== */
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Desenho das 3 linhas do Menu Hambúrguer em CSS */
+.btn-menu {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--color-text);
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    background-color: var(--color-text);
+    left: 0;
+    transition: transform 0.3s ease, top 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* ====================================================================
+   5. ESTILIZAÇÃO DOS BOTÕES (.btn)
    ==================================================================== */
 .btn {
     display: inline-flex;
@@ -163,8 +230,8 @@ body {
 
 .btn--primary:hover {
     background-color: var(--color-primary-hover);
-    transform: translateY(-2px); /* Eleva o botão levemente para cima */
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35); /* Sombra colorida no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
 }
 
 .btn--outline {
@@ -179,10 +246,10 @@ body {
 }
 
 /* ====================================================================
-   5. SEÇÃO HERO (Apresentação Principal)
+   6. SEÇÃO HERO
    ==================================================================== */
 .hero {
-    display: flex; /* Flexbox para colocar o texto e a imagem lado a lado no Desktop */
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 48px;
@@ -213,7 +280,6 @@ body {
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 18px;
-    /* Aplica um gradiente colorido no texto */
     background: var(--hero-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -256,7 +322,7 @@ body {
 }
 
 /* ====================================================================
-   [RESPONSIVIDADE 1]: SEÇÃO DE BENEFÍCIOS COM CSS GRID DINÂMICO
+   7. SEÇÃO DE BENEFÍCIOS
    ==================================================================== */
 .beneficios {
     padding: 80px 8%;
@@ -282,17 +348,12 @@ body {
     font-size: 1.1rem;
 }
 
-/* 🧱 REQUISITO EXIGIDO: CSS Grid Responsivo sem precisar de Media Query! */
 .beneficios__grid {
     display: grid;
-    /* repeat(auto-fit, minmax(280px, 1fr)):
-       - auto-fit: Quebra os elementos automaticamente para a linha de baixo conforme o espaço diminui.
-       - minmax(280px, 1fr): Cada card tem no mínimo 280px de largura e expande até ocupar 1 fração do espaço disponível. */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px; /* Espaço uniforme entre os cards */
+    gap: 32px;
 }
 
-/* Flexbox Interno dentro do Card para organizar o ícone, título e texto verticalmente */
 .card {
     background-color: var(--bg-card);
     border: 1px solid var(--color-border);
@@ -304,7 +365,6 @@ body {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Animação interativa ao passar o mouse por cima do Card */
 .card:hover {
     transform: translateY(-8px);
     border-color: var(--color-primary);
@@ -335,7 +395,7 @@ body {
 }
 
 /* ====================================================================
-   [ADAPTABILIDADE 2]: FAQ SANFONADA (<details> e <summary>)
+   8. FAQ SANFONADA (<details> e <summary>)
    ==================================================================== */
 .faq {
     padding: 80px 8%;
@@ -366,7 +426,6 @@ body {
     gap: 16px;
 }
 
-/* Estilo de cada item da sanfona */
 .faq__item {
     background-color: var(--bg-card);
     border: 1px solid var(--color-border);
@@ -375,30 +434,26 @@ body {
     transition: var(--transition);
 }
 
-/* Estilo do item quando ele é aberto ([open]) */
 .faq__item[open] {
     border-color: var(--color-primary);
     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
 }
 
-/* O elemento <summary> funciona como o título/botão clicável */
 .faq__question {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--color-text);
     cursor: pointer;
-    list-style: none; /* Esconde a seta padrão do navegador */
+    list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Remove a setinha padrão em navegadores WebKit (Chrome/Safari) */
 .faq__question::-webkit-details-marker {
     display: none;
 }
 
-/* Adiciona o ícone do sinal de + na direita */
 .faq__question::after {
     content: '+';
     font-size: 1.5rem;
@@ -406,12 +461,10 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Quando o item está aberto, muda o ícone de + para o sinal de − */
 .faq__item[open] .faq__question::after {
     content: '−';
 }
 
-/* A resposta da pergunta que aparece só quando o elemento se abre */
 .faq__answer {
     margin-top: 14px;
     color: var(--color-text-muted);
@@ -422,7 +475,7 @@ body {
 }
 
 /* ====================================================================
-   7. FORMULÁRIO DE CAPTURA (.newsletter)
+   9. FORMULÁRIO NEWSLETTER
    ==================================================================== */
 .newsletter {
     padding: 80px 8%;
@@ -472,7 +525,7 @@ body {
 }
 
 /* ====================================================================
-   8. REDES SOCIAIS FLUTUANTES
+   10. REDES SOCIAIS FLUTUANTES
    ==================================================================== */
 .social-floating {
     position: fixed;
@@ -503,7 +556,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Efeito ao passar o mouse: aumenta o ícone e gira levemente */
 .social-floating .social:hover {
     transform: scale(1.12) translateX(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -518,7 +570,7 @@ body {
 .social-floating .linkedin { background-color: #0A66C2; }
 
 /* ====================================================================
-   9. RODAPÉ (.footer)
+   11. RODAPÉ (.footer)
    ==================================================================== */
 .footer {
     padding: 32px 8%;
@@ -529,19 +581,33 @@ body {
 }
 
 /* ====================================================================
-   [RESPONSIVIDADE 2]: MEDIA QUERIES BREAKPOINT (max-width: 768px)
-   ====================================================================
-   Esta regra é ativada quando a largura da tela for de 768px ou menor (Celulares e Tablets) */
-@media (max-width: 768px) {
-    /* Oculta os links do menu do cabeçalho em celulares */
+   12. MEDIA QUERIES E MENU MOBILE RESPONSIVO (AULA 2)
+   ==================================================================== */
+@media (max-width: 868px) {
+    /* Oculta o menu por padrão no mobile */
     .header__nav {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    /* Reorganiza a Seção Hero: Troca de linha para coluna (empilha texto e imagem na vertical) */
+    /* Classe ativada via JavaScript ao clicar no hambúrguer */
+    .header__nav.header__nav--active {
+        display: flex;
+    }
+
+    /* Reorganização da Hero no mobile */
     .hero {
         flex-direction: column;
-        text-align: center; /* Centraliza todo o texto no mobile */
+        text-align: center;
         padding-top: 40px;
         padding-bottom: 40px;
         gap: 32px;
@@ -556,7 +622,6 @@ body {
         flex-wrap: wrap;
     }
 
-    /* Empilha os campos do formulário no mobile */
     .newsletter__form {
         flex-direction: column;
         align-items: center;
@@ -572,7 +637,6 @@ body {
     }
 }
 
-/* Ajuste extra para garantir 100% de funcionamento em telas pequenas (360px) sem quebrar o layout */
 @media (max-width: 380px) {
     .hero__cta-group {
         flex-direction: column;
@@ -582,53 +646,4 @@ body {
     .btn--lg {
         width: 100%;
     }
-}
-/* ==========================================================================
-   MÓDULO 3 — AULA 2: ESTILOS DO MENU MOBILE E TEMA CLARO
-   ========================================================================== */
-
-/* Estilo dos Botões de Ícone no Header */
-.btn-icon {
-    background: transparent;
-    border: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    padding: 8px;
-    color: var(--color-text);
-}
-
-.header__actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* 📱 ESTILO DO MENU MOBILE QUANDO ATIVO */
-@media (max-width: 868px) {
-    .header__nav {
-        display: none; /* Escondido por padrão no mobile */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-card);
-        flex-direction: column;
-        padding: 20px;
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    /* Classe ativada via JavaScript */
-    .header__nav.header__nav--active {
-        display: flex; /* Exibe o menu quando a classe for adicionada pelo JS */
-    }
-}
-
-/* 🎨 CLASSE MANUAL PARA LIGHT MODE (Sobrescreve as variáveis via JS) */
-body.light-theme {
-    --bg-main: #f8fafc;
-    --bg-card: #ffffff;
-    --bg-glass: rgba(255, 255, 255, 0.85);
-    --color-text: #0f172a;
-    --color-text-muted: #475569;
-    --color-border: #e2e8f0;
 }
