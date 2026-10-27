@@ -2,32 +2,87 @@
 // AULA 1: SELEÇÃO DE ELEMENTOS E EVENTOS DE CLIQUE
 // ==========================================================================
 
+
+/ ==========================================================================
+// AULA 1 + AULA 3: NEWSLETTER COM VALIDAÇÃO DE E-MAIL E FEEDBACK VISUAL
+// ==========================================================================
+
 // 1. SELECIONANDO OS ELEMENTOS NO DOM
 const formNewsletter = document.querySelector('.newsletter__form');
 const inputEmail = document.querySelector('.newsletter__input');
 const btnSubmit = document.querySelector('.btn--form');
 
-// 2. ESCUTANDO O EVENTO DE ENVIO DO FORMULÁRIO (submit)
-if (formNewsletter) {
+// 2. CRIAÇÃO DINÂMICA DA MENSAGEM DE FEEDBACK
+let feedbackText = null;
+
+if (inputEmail) {
+    feedbackText = document.createElement('small');
+    feedbackText.style.display = 'block';
+    feedbackText.style.marginTop = '8px';
+    feedbackText.style.fontSize = '0.85rem';
+    feedbackText.style.fontWeight = '600';
+    feedbackText.setAttribute('aria-live', 'polite');
+
+    // Insere a mensagem logo abaixo do campo de e-mail
+    inputEmail.insertAdjacentElement('afterend', feedbackText);
+}
+
+// 3. FUNÇÃO DE VALIDAÇÃO DE E-MAIL COM REGEX
+function validarEmail(email) {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexEmail.test(email);
+}
+
+// 4. EVENTO DE ENVIO DO FORMULÁRIO
+if (formNewsletter && inputEmail && feedbackText) {
+    let temporizadorFeedback;
+
     formNewsletter.addEventListener('submit', function(event) {
-        // Evita que a página recarregue ao enviar o formulário
+        // Impede o recarregamento da página
         event.preventDefault();
 
-        // Pega o valor digitado pelo usuário e remove espaços extras
+        // Obtém o e-mail sem espaços extras
         const emailDigitado = inputEmail.value.trim();
 
-        if (emailDigitado !== '') {
-            // Altera o texto do botão para confirmar o recebimento
-            btnSubmit.textContent = 'Inscrição Confirmada! 🎉';
-            btnSubmit.style.backgroundColor = '#22c55e'; // Verde de sucesso
+        // Cancela a limpeza programada de uma mensagem anterior
+        clearTimeout(temporizadorFeedback);
 
-            // Limpa o campo de entrada
-            inputEmail.value = '';
+        // 5. VALIDAÇÃO E FEEDBACK DE ERRO
+        if (!validarEmail(emailDigitado)) {
+            feedbackText.textContent =
+                '❌ Por favor, digite um e-mail válido (ex: nome@dominio.com).';
 
-            console.log(`E-mail cadastrado com sucesso: ${emailDigitado}`);
+            feedbackText.style.color = '#ef4444';
+            inputEmail.style.borderColor = '#ef4444';
+            inputEmail.focus();
+
+            return;
         }
+
+        // 6. FEEDBACK DE SUCESSO
+        feedbackText.textContent = '✅ Inscrição realizada com sucesso!';
+        feedbackText.style.color = '#22c55e';
+        inputEmail.style.borderColor = '#22c55e';
+
+        // Atualiza o botão, caso ele exista
+        if (btnSubmit) {
+            btnSubmit.textContent = 'Inscrição Confirmada! 🎉';
+            btnSubmit.style.backgroundColor = '#22c55e';
+        }
+
+        // Limpa o campo de entrada
+        inputEmail.value = '';
+
+        console.log(`E-mail cadastrado com sucesso: ${emailDigitado}`);
+
+        // 7. LIMPA A MENSAGEM APÓS 4 SEGUNDOS
+        temporizadorFeedback = setTimeout(function() {
+            feedbackText.textContent = '';
+            inputEmail.style.borderColor = '';
+        }, 4000);
     });
 }
+
 
 // ==========================================================================
 // MÓDULO 3 — AULA 2: MENU MOBILE E ALTERNADOR DE TEMA VIA classList.toggle
