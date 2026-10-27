@@ -1,87 +1,59 @@
 // ==========================================================================
-// AULA 1: SELEÇÃO DE ELEMENTOS E EVENTOS DE CLIQUE
+// MÓDULO 3 — AULA 3: VALIDAÇÃO DE FORMULÁRIO COM REGEX E FEEDBACK VISUAL
 // ==========================================================================
 
-
-/ ==========================================================================
-// AULA 1 + AULA 3: NEWSLETTER COM VALIDAÇÃO DE E-MAIL E FEEDBACK VISUAL
-// ==========================================================================
-
-// 1. SELECIONANDO OS ELEMENTOS NO DOM
+// 1. SELEÇÃO DOS ELEMENTOS DO DOM
 const formNewsletter = document.querySelector('.newsletter__form');
 const inputEmail = document.querySelector('.newsletter__input');
-const btnSubmit = document.querySelector('.btn--form');
 
 // 2. CRIAÇÃO DINÂMICA DA MENSAGEM DE FEEDBACK
-let feedbackText = null;
+const feedbackText = document.createElement('small');
+feedbackText.style.display = 'block';
+feedbackText.style.marginTop = '8px';
+feedbackText.style.fontSize = '0.85rem';
+feedbackText.style.fontWeight = '600';
 
-if (inputEmail) {
-    feedbackText = document.createElement('small');
-    feedbackText.style.display = 'block';
-    feedbackText.style.marginTop = '8px';
-    feedbackText.style.fontSize = '0.85rem';
-    feedbackText.style.fontWeight = '600';
-    feedbackText.setAttribute('aria-live', 'polite');
+// Insere o elemento <small> logo abaixo do input de e-mail
+inputEmail.parentNode.appendChild(feedbackText);
 
-    // Insere a mensagem logo abaixo do campo de e-mail
-    inputEmail.insertAdjacentElement('afterend', feedbackText);
-}
-
-// 3. FUNÇÃO DE VALIDAÇÃO DE E-MAIL COM REGEX
+// 3. FUNÇÃO QUE VALIDA O FORMULÁRIO VIA REGEX
 function validarEmail(email) {
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regexEmail.test(email);
+    return regexEmail.test(email); // Retorna true ou false
 }
 
-// 4. EVENTO DE ENVIO DO FORMULÁRIO
-if (formNewsletter && inputEmail && feedbackText) {
-    let temporizadorFeedback;
+// 4. ESCUTADOR DE EVENTO 'SUBMIT'
+formNewsletter.addEventListener('submit', function(event) {
+    // Bloqueia o envio do formulário enquanto validamos
+    event.preventDefault();
 
-    formNewsletter.addEventListener('submit', function(event) {
-        // Impede o recarregamento da página
-        event.preventDefault();
+    const emailValor = inputEmail.value.trim();
 
-        // Obtém o e-mail sem espaços extras
-        const emailDigitado = inputEmail.value.trim();
-
-        // Cancela a limpeza programada de uma mensagem anterior
-        clearTimeout(temporizadorFeedback);
-
-        // 5. VALIDAÇÃO E FEEDBACK DE ERRO
-        if (!validarEmail(emailDigitado)) {
-            feedbackText.textContent =
-                '❌ Por favor, digite um e-mail válido (ex: nome@dominio.com).';
-
-            feedbackText.style.color = '#ef4444';
-            inputEmail.style.borderColor = '#ef4444';
-            inputEmail.focus();
-
-            return;
-        }
-
-        // 6. FEEDBACK DE SUCESSO
+    // CHECAGEM DE ERRO: Campo vazio ou e-mail fora do padrão
+    if (!validarEmail(emailValor)) {
+        // Aplica o feedback visual de ERRO
+        feedbackText.textContent = '❌ Por favor, digite um e-mail válido (ex: nome@dominio.com).';
+        feedbackText.style.color = '#ef4444'; // Vermelho
+        inputEmail.style.borderColor = '#ef4444';
+        inputEmail.focus(); // Coloca o cursor de volta no campo
+    } else {
+        // Aplica o feedback visual de SUCESSO
         feedbackText.textContent = '✅ Inscrição realizada com sucesso!';
-        feedbackText.style.color = '#22c55e';
+        feedbackText.style.color = '#22c55e'; // Verde
         inputEmail.style.borderColor = '#22c55e';
-
-        // Atualiza o botão, caso ele exista
-        if (btnSubmit) {
-            btnSubmit.textContent = 'Inscrição Confirmada! 🎉';
-            btnSubmit.style.backgroundColor = '#22c55e';
-        }
 
         // Limpa o campo de entrada
         inputEmail.value = '';
 
-        console.log(`E-mail cadastrado com sucesso: ${emailDigitado}`);
+        console.log(`[Sucesso] E-mail cadastrado: ${emailValor}`);
 
-        // 7. LIMPA A MENSAGEM APÓS 4 SEGUNDOS
-        temporizadorFeedback = setTimeout(function() {
+        // Oculta a mensagem de sucesso após 4 segundos
+        setTimeout(function() {
             feedbackText.textContent = '';
-            inputEmail.style.borderColor = '';
+            inputEmail.style.borderColor = ''; // Restaura a borda padrão do CSS
         }, 4000);
-    });
-}
+    }
+});
 
 
 // ==========================================================================
