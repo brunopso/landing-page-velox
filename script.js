@@ -1,12 +1,19 @@
 // ==========================================================================
-// MÓDULO 3 - PERSISTÊNCIA DO TEMA COM LOCALSTORAGE
+// MÓDULO 3 - COMPILADO: TEMA COM LOCALSTORAGE & MENU MOBILE
 // ==========================================================================
 
-// 1. SELEÇÃO DOS ELEMENTOS DO DOM
+// 1. SELEÇÃO DOS ELEMENTOS DO DOM (Declarados apenas UMA vez)
 const themeToggle = document.querySelector('#theme-toggle');
 const themeIcon = document.querySelector('.theme-icon');
+const menuToggle = document.querySelector('#menu-toggle');
+const headerNav = document.querySelector('#header-nav');
+const navLinks = document.querySelectorAll('.header__link');
 
-// 2. RECUPERAÇÃO DO TEMA SALVO (Executado assim que a página carrega)
+// ==========================================================================
+// LÓGICA DO TEMA (Com Persistência LocalStorage)
+// ==========================================================================
+
+// Recuperação do tema salvo assim que a página carrega
 const temaSalvo = localStorage.getItem('temaPreferido');
 
 if (temaSalvo === 'light') {
@@ -16,15 +23,13 @@ if (temaSalvo === 'light') {
     }
 }
 
-// 3. ALTERNÂNCIA E GRAVAÇÃO DA PREFERÊNCIA
+// Ouvinte de clique para alternar o tema e gravar no navegador
 if (themeToggle) {
     themeToggle.addEventListener('click', function() {
-        // Alterna a classe 'light-theme' no <body>
         document.body.classList.toggle('light-theme');
 
         let novoTema = 'dark';
 
-        // Verifica se a classe está presente após o toggle
         if (document.body.classList.contains('light-theme')) {
             novoTema = 'light';
             if (themeIcon) themeIcon.textContent = '☀️';
@@ -32,56 +37,26 @@ if (themeToggle) {
             if (themeIcon) themeIcon.textContent = '🌙';
         }
 
-        // Salva a preferência na memória do navegador (Front-End)
+        // Salva a escolha do usuário na memória do navegador
         localStorage.setItem('temaPreferido', novoTema);
-       
         console.log(`[LocalStorage] Preferência atualizada para: ${novoTema}`);
     });
 }
 
 // ==========================================================================
-// MÓDULO 3 — AULA 2: MENU MOBILE E ALTERNADOR DE TEMA VIA classList.toggle
+// LÓGICA DO MENU MOBILE (Com Desafio Extra)
 // ==========================================================================
-
-// ==========================================================================
-// 1. LÓGICA DO MENU MOBILE COM DESAFIO EXTRA
-// ==========================================================================
-
-const menuToggle = document.querySelector('#menu-toggle');
-const headerNav = document.querySelector('#header-nav');
-
-// Seleciona TODOS os links que estão dentro do menu de navegação
-const navLinks = document.querySelectorAll('.header__link');
 
 if (menuToggle && headerNav) {
-    // Evento de clique no botão hambúrguer para abrir/fechar o menu
+    // Abre/fecha o menu ao clicar no botão hambúrguer
     menuToggle.addEventListener('click', function() {
         headerNav.classList.toggle('header__nav--active');
     });
 
-    // ✏️ DESAFIO EXTRA: Fecha o menu ao clicar em qualquer link da navegação
+    // DESAFIO EXTRA: Fecha o menu automaticamente ao clicar em qualquer link
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
-            // Remove a classe ativa, fazendo o menu fechar automaticamente
             headerNav.classList.remove('header__nav--active');
         });
-    });
-}
-
-// 2. LÓGICA DO ALTERNADOR DE TEMA (DARK / LIGHT MODE)
-const themeToggle = document.querySelector('#theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
-        // Alterna a classe 'light-theme' no <body>
-        document.body.classList.toggle('light-theme');
-
-        // Troca o ícone de Lua (🌙) para Sol (☀️) dependendo do estado
-        if (document.body.classList.contains('light-theme')) {
-            themeIcon.textContent = '☀️';
-        } else {
-            themeIcon.textContent = '🌙';
-        }
     });
 }
