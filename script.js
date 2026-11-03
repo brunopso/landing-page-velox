@@ -23,7 +23,7 @@ if (temaSalvo === 'light') {
     }
 }
 
-// Ouvinte de clique para alternar o tema e gravar no navegador
+// Ouvinte de clique para alternar o tema e gravar no navegador.
 if (themeToggle) {
     themeToggle.addEventListener('click', function() {
         document.body.classList.toggle('light-theme');
