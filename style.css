@@ -568,4 +568,97 @@ body {
     .social-floating {
         right: 10px;
     }
+
+/* =========================================
+   10. JANELA DE AVISO ACADÊMICO
+   ========================================= */
+
+/* Fundo escuro que cobre toda a página */
+.aviso-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+}
+
+/* Classe ativada pelo JavaScript */
+.aviso-overlay.ativo {
+    display: flex;
+}
+
+/* Caixa principal da mensagem */
+.aviso-modal {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 28px 24px;
+
+    background-color: #fce8e8;
+    border: 2px solid #ef5350;
+    border-radius: 12px;
+
+    text-align: center;
+
+    animation: aparecer-aviso 0.4s ease;
+}
+
+/* Título do aviso */
+.aviso-modal h2 {
+    color: #a83232;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+}
+
+/* Texto explicativo */
+.aviso-modal p {
+    color: #a83232;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Botão Entendi */
+#btn-entendi {
+    width: 100%;
+    padding: 12px;
+
+    background-color: #dc514d;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+#btn-entendi:hover {
+    background-color: #b93632;
+    transform: translateY(-2px);
+}
+
+/* Animação de entrada */
+@keyframes aparecer-aviso {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 }
