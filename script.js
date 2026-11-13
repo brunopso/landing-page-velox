@@ -59,4 +59,32 @@ if (menuToggle && headerNav) {
             headerNav.classList.remove('header__nav--active');
         });
     });
+
+
+/* =========================================
+   10. AVISO ACADÊMICO
+   ========================================= */
+
+// Localiza os elementos do aviso no HTML
+const avisoAcademico = document.getElementById("aviso-academico");
+const btnEntendi = document.getElementById("btn-entendi");
+
+// Verifica se o visitante já confirmou o aviso nesta sessão
+if (!sessionStorage.getItem("avisoConfirmado")) {
+
+    // Exibe a janela de aviso
+    avisoAcademico.classList.add("ativo");
+}
+
+// Evento de clique no botão Entendi
+btnEntendi.addEventListener("click", function() {
+
+    // Esconde a janela
+    avisoAcademico.classList.remove("ativo");
+
+    // Registra que o visitante confirmou o aviso
+    sessionStorage.setItem("avisoConfirmado", "sim");
+
+});
+
 }
